@@ -1,4 +1,4 @@
-// Parent Appliance class
+// Родительский класс устройства
 function Appliance(name, power) {
     this.name = name;
     this.power = power;
@@ -7,15 +7,15 @@ function Appliance(name, power) {
 
 Appliance.prototype.turnOn = function() {
     this.isOn = true;
-    console.log(`${this.name} has been turned on.`);
+    console.log(`${this.name} - включено.`);
 };
 
 Appliance.prototype.turnOff = function() {
     this.isOn = false;
-    console.log(`${this.name} has been turned off.`);
+    console.log(`${this.name} - выключено.`);
 };
 
-// Child Lamp class
+// Дочерний класс Lamp
 function Lamp(name, power, brightness) {
     Appliance.call(this, name, power);
     this.brightness = brightness;
@@ -26,10 +26,10 @@ Lamp.prototype.constructor = Lamp;
 
 Lamp.prototype.adjustBrightness = function(level) {
     this.brightness = level;
-    console.log(`Brightness of ${this.name} has been adjusted to ${level}.`);
+    console.log(`Яркость ${this.name} была настроена на ${level}.`);
 };
 
-// Child Computer class
+// Дочерний класс Computer
 function Computer(name, power, isLaptop) {
     Appliance.call(this, name, power);
     this.isLaptop = isLaptop;
@@ -39,17 +39,17 @@ Computer.prototype = Object.create(Appliance.prototype);
 Computer.prototype.constructor = Computer;
 
 Computer.prototype.checkIsLaptop = function() {
-    console.log(`${this.name} is a laptop: ${this.isLaptop}.`);
+    console.log(`${this.name} это ноутбук: ${this.isLaptop}.`);
 };
 
-// Create instances of appliances
-const myLamp = new Lamp("Desk Lamp", 20, 50);
+// Создание экземпляров устройств
+const myLamp = new Lamp("Настольная лампа", 20, 50);
 const myComputer = new Computer("MacBook Pro", 150, true);
 
 // Add appliances to an array
 const appliances = [myLamp, myComputer];
 
-// Turn on some appliances and calculate power consumption
+// Включим некоторые приборы и расчитаем потребляемую мощность
 let totalPower = 0;
 for (let i = 0; i < appliances.length; i++) {
     if (i % 2 === 0) {
@@ -57,4 +57,4 @@ for (let i = 0; i < appliances.length; i++) {
         totalPower += appliances[i].power;
     }
 }
-console.log(`Total power consumption: ${totalPower} watts.`);
+console.log(`Общая потребляемая мощность: ${totalPower} Ватт.`);
